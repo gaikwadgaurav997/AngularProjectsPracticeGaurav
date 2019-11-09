@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'AngularVideo'`, () => {
+  it(`should have as title 'drinkanddelight-frontend'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('AngularVideo');
+    expect(app.title).toEqual('drinkanddelight-frontend');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('AngularVideo app is running!');
+    expect(compiled.querySelector('.content span').textContent).toContain('drinkanddelight-frontend app is running!');
   });
 });

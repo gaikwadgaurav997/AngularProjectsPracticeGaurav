@@ -1,26 +1,51 @@
-import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
+
+import { ReactiveFormsModule} from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ServerComponent } from './server/server.component';
-import { ServersComponent } from './servers/servers.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { AuthenticationModule } from './authentication/authentication.module';
+import { ProductsModule } from './products/products.module';
+import { RawmaterialsModule } from './rawmaterials/rawmaterials.module';
+import { HomepageComponent } from './homepage/homepage.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ServerComponent,
-    ServersComponent
+    HeaderComponent,
+    FooterComponent,
+    HomepageComponent
+   
   ],
   imports: [
+    
+    AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
+    ProductsModule,
+    RawmaterialsModule,
+    AuthenticationModule,
+    HttpClientModule,
     BrowserModule,
-    HttpModule,
-    AppRoutingModule
+   
+ 
   ],
-  providers: [],
+
+  exports: [
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+   
+    
+  ],
+  providers: [
+    // PlaceRawmaterialOrdersService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,108 @@
+<div class="container">
+    <div>
+       <h2>Update Raw Material Stock</h2>
+       <p>Update details of raw material</p>
+    </div>
+    <hr>
+    <br>
+    <form>
+      <div class="form-group">
+              <div class="row">
+                      <div class="col-lg-2">
+                          <label for="orderID">Enter Order ID</label>
+                      </div>
+          
+                      <div class="col-lg-3">
+                          <input required pattern='[0-9]+' type="text" #orderID='ngModel' class='form-control' id="orderID"
+                                  [(ngModel)]='orderId' name='orderID' (change) = "log(orderID)">
+                          <!-- <div class = "alert alert-danger" *ngIf = 'orderIDcheck'>Enter numeric order id</div> -->
+                          <div class="alert alert-danger" *ngIf="orderID.touched && !orderID.valid"> Order ID is required
+                          <div *ngIf="orderID.errors.pattern"> Enter numeric order ID</div>
+                          </div>
+                      </div>
+              </div>
+      </div>
+      
+  
+      <div class="form-group">
+              <div class="row">
+                      <div class="col-lg-2">
+                          <label for="manufacturingdate">Manufacturing Date</label>
+                      </div>
+          
+                      <div class="col-lg-3">
+                          <input required type="date"  class='form-control' id="manufacturingdate" #updateManufacturingDate='ngModel'
+                          [(ngModel)]='manufacturingDate' name='manufacturingDate' (change) = "log(updateManufacturingDate)" min="{{minManufacturingDate | date:'yyyy-MM-dd'}}" max = "{{maxManufacturingDate | date:'yyyy-MM-dd'}}">
+                                   
+                              <!-- <div class = "alert alert-danger" *ngIf = 'orderIDcheck'>Enter numeric order id</div> -->
+                          <div class="alert alert-danger" *ngIf="updateManufacturingDate.touched && !updateManufacturingDate.valid"> enter manufacturing date </div>
+                          
+                      </div>
+              </div>
+      </div>
+      
+  
+      <div class="form-group">
+              <div class="row">
+                      <div class="col-lg-2">
+                          <label for="expirydate">Expiry Date</label>
+                      </div>
+          
+                      <div class="col-lg-3">
+                          <input required type="date"  class='form-control' id="expirydate" #updateExpiryDate='ngModel'
+                          [(ngModel)]='expiryDate' name='expiryDate' (change) = "log(updateExpiryDate)" min="{{minExpiryDate | date:'yyyy-MM-dd'}}" max = "{{maxExpiryDate | date:'yyyy-MM-dd'}}">
+                                   
+                              <!-- <div class = "alert alert-danger" *ngIf = 'orderIDcheck'>Enter numeric order id</div> -->
+                          <div class="alert alert-danger" *ngIf="updateExpiryDate.touched && !updateExpiryDate.valid"> enter expiry date </div>
+                          
+                      </div>
+              </div>
+      </div>
+     
+         
+      <div class="form-group">
+              <div class="row">
+                      <div class="col-lg-2">
+                          <label for="QAStatus">Quality Status</label>
+                      </div>
+                      <div class="col-lg-3">
+                          <select class="form-control" name="QAStatus" #qualityStatus = 'ngModel' required [(ngModel)] = 'qaStatus' (change) = "log(qualityStatus)">
+                          <option>Passed</option>
+                          <option>Failed</option>
+                          </select>
+                      </div>
+              </div>
+  
+      </div>
+  
+      <br>      
+      <button type="submit" class="btn btn-dark" [disabled] = "!enableButton" (click)='setRawMaterialStock()'>Update Stock</button>
+  
+    </form>
+  
+  </div>
+
+  <div *ngIf="isProcessing" class="spinner-container d-flex align-items-center justify-content-center flex-column">
+    <div class="spinner-border text-info" role="status">
+        
+    </div>
+    <h6 class="mt-2">Please wait ...</h6>
+</div>
+
+  <br>
+  <div class="container">
+  <div class="alert" 
+  [ngClass]="{
+      'alert-success': message === 'Data inserted',
+      'alert-danger': !(message === 'Data inserted')
+    }"
+  *ngIf = 'isDataSet'>
+      <strong name = 'outputbox'>{{ message }}</strong>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="alert alert-danger" *ngIf = 'hasErrorOccured'>
+        <strong name = 'errorbox'>{{ errorMessage }}</strong>
+      </div>
+    </div>
